@@ -30,11 +30,11 @@ export default class SarifReportFinder {
 
     fs.promises.readdir(dir)
       .then(files => {
-        files
+        const sarifFiles = files
           .filter(f => f.endsWith('.sarif'))
           .map(f => path.resolve(dir, f));
-        console.log(`    SARIF files detected: ${JSON.stringify(files)}`)
-        files.forEach(f => promises.push(loadFileContents(f)));
+        console.log(`    SARIF files detected: ${JSON.stringify(sarifFiles)}`)
+        sarifFiles.forEach(f => promises.push(loadFileContents(f)));
       })
     }
 
